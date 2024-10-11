@@ -29,8 +29,8 @@ while IFS= read -r accession; do
         genbank_url=$(printf "$BASE_URL_GENBANK" "$accession")
 
         # Output file names
-        fasta_output="${accession}.fasta"
-        genbank_output="${accession}.gb"
+        fasta_output="./REF/${accession}.fasta"
+        genbank_output="./REF/${accession}.gb"
 
         # Download FASTA and GenBank files
         download_file "$fasta_url" "$fasta_output"

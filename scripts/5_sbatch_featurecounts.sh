@@ -4,10 +4,10 @@
 #SBATCH --time=02:00:00
 #SBATCH -N 1
 #SBATCH -n 4
-#SBATCH --output=<>
-#SBATCH --error=<>
+#SBATCH --output=/scratch/soo.m/2024-10-11_brian-rnaseq_e5a72/%x-%j.log
+#SBATCH --error=/scratch/soo.m/2024-10-11_brian-rnaseq_e5a72/%x-%j.err
 #SBATCH --mail-type=END
-#SBATCH --mail-user=<>
+#SBATCH --mail-user=soo.m@northeastern.edu
 
 echo "Loading environment and tools"
 module load anaconda3/2021.05

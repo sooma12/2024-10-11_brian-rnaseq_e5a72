@@ -2,14 +2,14 @@
 #SBATCH --partition=short
 #SBATCH --job-name=alignRNA_bowtie
 #SBATCH --time=08:00:00
-#SBATCH --array=<>
-#SBATCH --ntasks=<>
+#SBATCH --array=1-6%7
+#SBATCH --ntasks=6
 #SBATCH --mem=100G
 #SBATCH --cpus-per-task=8
-#SBATCH --output=<>
-#SBATCH --error=<>
+#SBATCH --output=/scratch/soo.m/2024-10-11_brian-rnaseq_e5a72/%x-%A-%a
+#SBATCH --error=/scratch/soo.m/2024-10-11_brian-rnaseq_e5a72/%x-%A-%a
 #SBATCH --mail-type=END,FAIL
-#SBATCH --mail-user=<>
+#SBATCH --mail-user=soo.m@northeastern.edu
 
 ## Usage: sbatch 3_sbatch_array_bowtie2_align.sh
 echo "Loading tools"
