@@ -1,17 +1,19 @@
-# template_RNA-seq_bowtie_jun24
-Template repo for RNA-seq analysis with Bowtie2 using Northeastern University's Discovery cluster
+# 
+Written Mark Soo Oct 11 2024 for analysis of Brian Nguyen's RNA-seq data using the reference genome: https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_004797155.2/
 
-Written by Mark Soo
+## Reference genome
 
-## Copying this template repository to Discovery
+Link to assembly:
+https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_004797155.2/
 
-Go to the template repository https://github.com/sooma12/template_RNA-seq_bowtie_jun24
+Assembly is in 3 parts, 1 chromosome and 2 plasmids.
 
-Along the menu bar, click the green "Use this template" button -> "Create a new repository"
+Chromosome  GenBank RefSeq  Size (bp)   GC content (%)
+chromosome	CP039025.2	NZ_CP039025.2	3,955,017	39
+unnamed1	CP039024.1	NZ_CP039024.1	30,876	35.5
+unnamed2	CP039026.1	NZ_CP039026.1	30,410	36
 
-In the new copied repo, use the green "Code" button and clone as appopriate to /work/ on Discovery (and local device as desired).
-
-Note, BEFORE UNZIPPING FASTQ FILES, use script `check_md5sums.py` to confirm successful file transfer; see that script for details.
+Downloaded files to /scratch/soo.m/2024-10-11_brian-rnaseq_e5a72/REF using download_genome_files.sh script
 
 ## Setting up config.cfg
 
