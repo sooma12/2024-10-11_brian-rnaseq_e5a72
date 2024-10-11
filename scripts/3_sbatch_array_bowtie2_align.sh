@@ -6,8 +6,8 @@
 #SBATCH --ntasks=6
 #SBATCH --mem=100G
 #SBATCH --cpus-per-task=8
-#SBATCH --output=/scratch/soo.m/2024-10-11_brian-rnaseq_e5a72/%x-%A-%a
-#SBATCH --error=/scratch/soo.m/2024-10-11_brian-rnaseq_e5a72/%x-%A-%a
+#SBATCH --output=/scratch/soo.m/2024-10-11_brian-rnaseq_e5a72/logs/%x-%A-%a
+#SBATCH --error=/scratch/soo.m/2024-10-11_brian-rnaseq_e5a72/logs/%x-%A-%a
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=soo.m@northeastern.edu
 
@@ -36,4 +36,4 @@ r2=$(sed -n "$SLURM_ARRAY_TASK_ID"p $SAMPLE_SHEET_PATH |  awk '{print $3}')
 echo "Running Bowtie2 on files $r1 and $r2"
 
 # Bowtie2 in paired end mode
-bowtie2 --local -p 8 -x $BT2_OUT_BASE -q -1 $r1 -2 $r2 -S $MAPPED_DIR/$name.sam
+bowtie2 --local --very-sensitive-local -p 8 -x $BT2_OUT_BASE -q -1 $r1 -2 $r2 -S $MAPPED_DIR/$name.sam

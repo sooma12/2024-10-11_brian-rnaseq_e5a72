@@ -5,8 +5,8 @@
 #SBATCH -N 1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
-#SBATCH --output=/scratch/soo.m/2024-10-11_brian-rnaseq_e5a72/%x-%j.log
-#SBATCH --error=/scratch/soo.m/2024-10-11_brian-rnaseq_e5a72/%x-%j.err
+#SBATCH --output=/scratch/soo.m/2024-10-11_brian-rnaseq_e5a72/logs/%x-%j.log
+#SBATCH --error=/scratch/soo.m/2024-10-11_brian-rnaseq_e5a72/logs/%x-%j.err
 #SBATCH --mail-type=END
 #SBATCH --mail-user=soo.m@northeastern.edu
 

@@ -29,3 +29,16 @@ gffread CP039026.1.gff3 -T -o CP039026.1.gtf
 3. Merged gtf files
 cat CP039024.1.gtf CP039025.2.gtf CP039026.1.gtf >merged_17978_e5a72.gtf
 
+## Scripts
+
+Bowtie2-build was run on fasta files (specified with -f) using 1_sbatch_bowtie2_build_ref.sh
+
+Sample sheet containing sample IDs and file paths for read files generated using 2_make_sample_sheet.sh
+
+The bowtie2 aligner was called in paired end mode with 3_sbatch_array_bowtie2_align.sh using these settings:
+--local \
+--very-sensitive-local \
+-p 8 \
+-x $BT2_OUT_BASE \
+-q
+
