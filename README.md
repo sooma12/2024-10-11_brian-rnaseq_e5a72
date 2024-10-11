@@ -17,28 +17,53 @@ Downloaded files to /scratch/soo.m/2024-10-11_brian-rnaseq_e5a72/REF using downl
 
 Reference GTF was made as follows:
 1.  Downloaded gff3 files to ./REF/
+
+```bash
 wget -O CP039025.2.gff3 "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CP039025.2&rettype=gff3"
 wget -O CP039024.1.gff3 "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CP039024.1&rettype=gff3"
 wget -O CP039026.1.gff3 "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CP039026.1&rettype=gff3"
+```
 
 2. gff3 files converted to GTF files 
+```bash
 gffread CP039024.1.gff3 -T -o CP039024.1.gtf
 gffread CP039025.2.gff3 -T -o CP039025.2.gtf
 gffread CP039026.1.gff3 -T -o CP039026.1.gtf
+```
+
 
 3. Merged gtf files
+```bash
 cat CP039024.1.gtf CP039025.2.gtf CP039026.1.gtf >merged_17978_e5a72.gtf
+```
 
 ## Scripts
 
-Bowtie2-build was run on fasta files (specified with -f) using 1_sbatch_bowtie2_build_ref.sh
+1. Bowtie2-build was run on fasta files (specified with -f) using 1_sbatch_bowtie2_build_ref.sh
 
-Sample sheet containing sample IDs and file paths for read files generated using 2_make_sample_sheet.sh
+2. Sample sheet containing sample IDs and file paths for read files generated using 2_make_sample_sheet.sh
 
-The bowtie2 aligner was called in paired end mode with 3_sbatch_array_bowtie2_align.sh using these settings:
+3. The bowtie2 aligner was called in paired end mode with 3_sbatch_array_bowtie2_align.sh using these settings:
+```bash
+bowtie2 \
 --local \
 --very-sensitive-local \
 -p 8 \
 -x $BT2_OUT_BASE \
 -q
+```
 
+4. Samtools used to convert SAM outputs to BAM files, sort BAM files, and generate alignment stats.
+
+5. Featurecounts used to aggregate reads to genomic features using paired-end mode.
+```bash
+featureCounts \
+-a $GENOME_GTF \
+-o $COUNTS_OUTDIR/$COUNTS_FILE \
+-p \
+--countReadPairs \
+-t transcript \
+$MAPPED_DIR/*.bam
+```
+
+6. MultiQC used to summarize pipeline statistics
